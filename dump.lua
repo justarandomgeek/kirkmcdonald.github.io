@@ -86,7 +86,7 @@ function inspect_entities(entities)
     local groups = {}
     for k, v in pairs(entities) do
         groups[v.group.name] = v.group
-        if v.crafting_categories or v.mining_power or v.resource_category or v.burner_prototype then
+        if v.crafting_categories or v.resource_category or v.burner_prototype then
             entity = {
                 name=v.name,
                 type=v.type,
@@ -102,15 +102,13 @@ function inspect_entities(entities)
                 energy_usage=v.energy_usage,
                 max_energy_usage=v.max_energy_usage,
                 mining_speed=v.mining_speed,
-                mining_power=v.mining_power,
                 fluid_usage_per_tick=v.fluid_usage_per_tick,
             }
             if v.burner_prototype then
                 b = v.burner_prototype
                 entity.burner_prototype = {
-                    category=b.category,
                     effectivity=b.effectivity,
-                    fuel_category=b.fuel_category,
+                    fuel_categories=b.fuel_categories,
                     emissions=b.emissions,
                 }
             end
@@ -210,4 +208,3 @@ end
 inspect_all()
 
 game.write_file("game_data.json", out)
-
